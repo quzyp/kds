@@ -33,7 +33,7 @@ def reset():
         drop_database(DB_URL)
     create_database(DB_URL)
     db.create_all()
-    return redirect(url_for('index')
+    return redirect(url_for('index'))
 
 @app.route('/dummy')
 def dummy():
@@ -42,7 +42,7 @@ def dummy():
     db.session.add(abc)
     db.session.add(foobar)
     db.session.commit()
-    return redirect(url_for('index')
+    return redirect(url_for('index'))
                     
 if __name__ == '__main__':
     app.debug = True
