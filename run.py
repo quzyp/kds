@@ -28,10 +28,8 @@ if __name__ == '__main__':
         cmd = f'coverage html -d {htmlcov} --omit="venv/*"'
         subprocess.call(cmd, shell=True)
 
-
-
     if operation == 'pylint':
-        rcfile = project_root / 'dev' / '.pylintrc'
+        rcfile = project_root / '.pylintrc'
         output = project_root / 'dev' / f'pylint_report_{now}'
         cmd = f'pylint kds --rcfile {rcfile} > {output}'
         subprocess.call(cmd, shell=True)

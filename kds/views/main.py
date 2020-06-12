@@ -1,4 +1,3 @@
-
 from flask import Blueprint, redirect, render_template, url_for
 from ..extensions import db
 from ..models import TestTable
