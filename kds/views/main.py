@@ -1,29 +1,33 @@
-from flask import Blueprint, redirect, render_template, url_for
+import pathlib
+from flask import Blueprint, current_app, redirect, render_template, request, url_for
 from ..extensions import db
-from ..models import TestTable
+from ..models import TestTable, Trade
 
 main = Blueprint('main', __name__)
 
 
-@main.route('/')
+@main.route('/', methods=['GET', 'POST'])
 def index():
-    data = TestTable.query.all()
-    return render_template('index/index.html', data=data)
+    """Default table view - show the table and provide form and
+    functions for modifying that table.
 
-@main.route('/reset')
-def reset():
-    #Drop database and create a fresh one, including tables.
-    if database_exists(DB_URL):
-        drop_database(DB_URL)
-    create_database(DB_URL)
-    db.create_all()
-    return redirect(url_for('index/index'))
+    """
+    return redirect(url_for('kalkulation.index'))
 
-@main.route('/dummy')
-def dummy():
-    abc = TestTable(name='ABC GmbH', zipcode='01446', location='Berlin')
-    foobar = TestTable(name='foobar AG', zipcode='45329', location='Essen')
-    db.session.add(abc)
-    db.session.add(foobar)
+@main.route('/gew')
+def gew():
+    """Default table view - show the table and provide form and
+    functions for modifying that table.
+
+    
+    filepath = pathlib.Path(current_app.static_folder) / '_gewerke.txt'
+    with open(filepath, 'r') as f:
+        txt = f.readlines()
+    for line in txt:
+        g = Trade(name=line[4:])
+        db.session.add(g)
     db.session.commit()
-    return redirect(url_for('index/index'))
+    return ''
+    """
+    trades = Trade.query.all()
+    return '<br>'.join([f'{t._id}: {t.name}' for t in trades])

@@ -1,0 +1,35 @@
+ 
+  {% extends 'base.html' %}
+
+  {% block title %}TestTable{% endblock %}
+
+  {% block content %}
+
+  <p>TestTable Übersicht</p>
+
+
+  <form action="/kalkulation" method="get">
+    <button name="action" type="submit" value="add_row" class="btn btn-primary">Hinzufügen</button>
+  </form> 
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-center">id</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">PLZ</th>
+        <th class="text-center">Ort</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for field in data %}
+      <tr>
+        <td>{{ field.id }}</td>
+        <td>{{ field.name }}</td>
+        <td>{{ field.zipcode }}</td>
+        <td>{{ field.location }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endblock %}

@@ -3,7 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import database_exists, create_database, drop_database
 
 from .extensions import db
-from .views.main import main 
+from .views.main import main
+from .views.admin import admin
+from .views.kalkulation import kalkulation
+from .views.gewerke import gewerke
 
 def create_app(environment=None):
     app = Flask(__name__)
@@ -16,6 +19,10 @@ def create_app(environment=None):
 
     register_extensions(app)
     app.register_blueprint(main, url_prefix='/')
+    app.register_blueprint(kalkulation, url_prefix='/kalkulation')
+    app.register_blueprint(admin, url_prefix='/admin')
+    app.register_blueprint(gewerke, url_prefix='/gewerke')
+
     return app
 
 def register_extensions(app):
