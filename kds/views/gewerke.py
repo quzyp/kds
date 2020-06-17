@@ -20,7 +20,7 @@ def index():
         action = request.args.get('action')
 
     if action == 'add_row':
-        return render_template('gewerke/add_row.html')
+        return render_template('gewerke/add_row.html', form={}, msg={})
 
     if action == 'add':
         _index = request.form['_index']
@@ -30,7 +30,7 @@ def index():
         try:
             db.session.commit()
         except exc.IntegrityError:
-            return 'Nope'
+            return render_template('gewerke/add_row.html', form=request.form, msg=[{'error': 'Index bereits vorhanden!'}])
         table_data = Trade.query.all()
 
     # else, show default template
