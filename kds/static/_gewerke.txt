@@ -1,77 +1,76 @@
-000 Sicherheitseinrichtungen, Baustelleneinrichtungen
-001 Gerüstarbeiten
-002 Erdarbeiten
-003 Landschaftsbauarbeiten
-004 Landschaftsbauarbeiten - Pflanzen
-005 Brunnenbauarbeiten und Aufschlussbohrungen
-006 Spezialtiefbauarbeiten
-007 Untertagebauarbeiten
-008 Wasserhaltungsarbeiten
-009 Entwässerungskanalarbeiten
-010 Drän- und Versickerarbeiten
-011 Abscheider- und Kleinkläranlagen
-012 Mauerarbeiten
-013 Betonarbeiten
-014 Natur-, Betonwerksteinarbeiten
-016 Zimmer- und Holzbauarbeiten
-017 Stahlbauarbeiten
-018 Abdichtungsarbeiten
-019 Kampfmittelräumarbeiten
-020 Dachdeckungsarbeiten
-021 Dachabdichtungsarbeiten
-022 Klempnerarbeiten
-023 Putz- und Stuckarbeiten, Wärmedämmsysteme
-024 Fliesen- und Plattenarbeiten
-025 Estricharbeiten
-026 Fenster, Außentüren
-027 Tischlerarbeiten
-028 Parkett-, Holzpflasterarbeiten
-029 Beschlagarbeiten
-030 Rollladenarbeiten
-031 Metallbauarbeiten
-032 Verglasungsarbeiten
-033 Baureinigungsarbeiten
-034 Maler- und Lackierarbeiten - Beschichtungen
-035 Korrosionsschutzarbeiten an Stahlbauten
-036 Bodenbelagarbeiten
-037 Tapezierarbeiten
-038 Vorgehängte hinterlüftete Fassaden
-039 Trockenbauarbeiten
-040 Wärmeversorgungsanlagen - Betriebseinrichtungen
-041 Wärmeversorgungsanlagen - Leitungen, Armaturen, Heizflächen
-042 Gas- und Wasseranlagen - Leitungen, Armaturen
-043 Druckrohrleitungen für Gas, Wasser und Abwasser
-044 Abwasseranlagen - Leitungen, Abläufe, Armaturen
-045 Gas-, Wasser- und Entwässerungsanlagen - Ausstattung, Elemente, Fertigbäder
-046 Gas-, Wasser- und Entwässerungsanlagen - Betriebseinrichtungen
-047 Dämm- und Brandschutzarbeiten an technischen Anlagen
-049 Feuerlöschanlagen, Feuerlöschgeräte
-050 Blitzschutz- / Erdungsanlagen, Überspannungsschutz
-051 Kabelleitungstiefbauarbeiten
-052 Mittelspannungsanlagen
-053 Niederspannungsanlagen - Kabel / Leitungen, Verlegesysteme, Installationsgeräte
-054 Niederspannungsanlagen - Verteilersysteme und Einbaugeräte
-055 Sicherheits- und Ersatzstromversorgungsanlagen
-057 Gebäudesystemtechnik
-058 Leuchten und Lampen
-059 Sicherheitsbeleuchtungsanlagen
-060 Sprech-, Ruf-, Antennenempfangs-, Uhren- und elektroakustische Anlagen
-061 Kommunikations- und Übertragungsnetze
-062 Kommunikationsanlagen
-063 Gefahrenmeldeanlagen
-064 Zutrittskontroll-, Zeiterfassungssysteme
-069 Aufzüge
-070 Gebäudeautomation
-075 Raumlufttechnische Anlagen
-078 Kälteanlagen für raumlufttechnische Anlagen
-080 Straßen, Wege, Plätze
-081 Betonerhaltungsarbeiten
-082 Bekämpfender Holzschutz
-084 Abbruch-, Rückbau- und Schadstoffsanierungsarbeiten
-085 Rohrvortriebsarbeiten
-087 Abfallentsorgung, Verwertung und Beseitigung
-090 Baulogistik
-091 Stundenlohnarbeiten
-096 Bauarbeiten an Bahnübergängen
-097 Bauarbeiten an Gleisen und Weichen
-098 Witterungsschutzmaßnahmen 
+210 Abbruch- und Rückbauarbeiten
+220 Schadstoffsanierung
+230 Spezialtiefbau
+240 Wasserhaltungsarbeiten
+302 Abfallentsorgung, Verwertung und Beseitigung
+304 Alufenster
+306 Baustelleneinrichtungen / Sicherheitseinrichtungen
+308 Baureinigungsarbeiten
+310 Bautrocknung
+312 Beton- und Stahlbetonarbeiten
+314 Betoninstandsetzung
+316 Betonfertigteile
+318 Beschilderung und Folierung
+320 Bodenbeschichtungsarbeiten
+322 Dachdecker- und Klempnerarbeiten
+324 Elektroarbeiten
+326 Erd- und Kanalbauarbeiten
+328 Estricharbeiten
+330 Fliesen und Plattenarbeiten
+332 Gerüstbauarbeiten
+334 Glastrennwände
+336 Gussasphaltarbeiten
+338 Holzfenster
+340 Holztüren
+342 Kunststofffenster
+344 Innenputzarbeiten
+346 Kellertrennwände
+348 Kernbohrungen und Sägearbeiten
+350 Klinkerfassadensanierungsarbeiten
+352 Korrosionsschutzarbeiten
+354 Kücheneinrichtungen
+358 Maler- und Lackierarbeiten
+360 Mauerarbeiten
+362 Metallbauarbeiten
+364 Natur- und Betonwerksteinarbeiten
+366 Parkett- und Holzpflasterarbeiten
+368 RWA und Lichtbänder
+372 Schließanlagen
+374 Sonnenschutzarbeiten
+376 Stahlbau
+378 Stahltüren
+380 Steinmetzarbeiten
+382 Teppich und PVC
+384 Tischlerarbeiten
+386 Trockenbauarbeiten
+388 Verblendarbeiten
+392 Versiegelungsarbeiten
+394 Wärmedämmverbundsysteme
+396 WC-Trennwände
+396 Zimmer- und Holzbauarbeiten
+405 Aufzüge
+410 Blitzschutzarbeiten
+415 Brandmeldeanlagen
+420 Brandschutzarbeiten
+425 Brandschutztoranlagen
+430 Feuerlöschanlagen und Feuerlöschgeräte
+435 Heizung
+440 Kühlraumbau
+445 Lüftungsanlagen
+450 MSR
+455 Sanitärarbeiten
+460 Sprinkleranlagen
+510 Garten- und Landschftsbau
+520 Straßenbau
+530 Zaun- und Toranlagen
+710 Ingenieurleistungen
+720 Wachschutz
+810 Bauwerksanalyse
+820 Balkon
+830 Mauerwerkstrockenlegung
+840 Natursteinsanierung
+850 Putz- und Stuckarbeiten (M)
+860 Vorgesetzte Balkone
+870 Vorhangfassaden
+880 Werbeanlagen
+885 Hohlraumboden
