@@ -27,4 +27,5 @@ class Company(db.Model):
 class Trade(db.Model):
     """ Trade. """
     _id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), unique=True, nullable=False)
+    _index = db.Column(db.String(3), unique=True, nullable=False)
+    name = db.Column(db.String(255), unique=True, nullable=False)

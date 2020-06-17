@@ -20,13 +20,15 @@ def gew():
     functions for modifying that table."""
 
     #Trade.query.delete()
+    #Trade.__table__.drop(db.engine)
+    #Trade.__table__.create(db.engine)
 
 
     #filepath = pathlib.Path(current_app.static_folder) / '_gewerke.txt'
     #with open(filepath, 'r', encoding='utf-8') as f:
     #    txt = f.readlines()
     #for line in txt:
-    #    g = Trade(name=line[4:])
+    #    g = Trade(_index=line[:4], name=line[4:])
     #    db.session.add(g)
     #db.session.commit()
     #return ''

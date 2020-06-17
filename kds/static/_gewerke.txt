@@ -47,7 +47,7 @@
 392 Versiegelungsarbeiten
 394 Wärmedämmverbundsysteme
 396 WC-Trennwände
-396 Zimmer- und Holzbauarbeiten
+398 Zimmer- und Holzbauarbeiten
 405 Aufzüge
 410 Blitzschutzarbeiten
 415 Brandmeldeanlagen
