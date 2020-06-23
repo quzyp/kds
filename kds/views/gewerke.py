@@ -1,6 +1,6 @@
 """ Module docstring. """
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 from sqlalchemy import exc
 
 from ..extensions import db
@@ -21,14 +21,20 @@ def index():
         action = request.args.get('action')
 
     if action == 'add':
+        get_args = {}
         _index = request.form['_index']
         name = request.form['name']
         t = Trade(_index=_index, name=name)
         db.session.add(t)
         try:
             db.session.commit()
+            flash(f'"{name}" erfolgreich hinzugefügt.', 'success')
         except exc.IntegrityError:
-            return render_template('gewerke/add_row.html', form=request.form, msg=[{'error': 'Index bereits vorhanden!'}])
+            flash('Index bereits vorhanden.', 'danger')
+            get_args['_index-class'] = 'is-invalid'#
+            get_args['_index-text'] = _index
+            get_args['name-text'] = name
+        return redirect(url_for('gewerke.add', **get_args))
 
     if action == 'delete':
         _id = int(request.args.get('id'))
@@ -42,4 +48,4 @@ def index():
 
 @gewerke.route('/add', methods=['GET', 'POST'])
 def add():
-    return render_template('gewerke/add.html', form={}, msg={})
+    return render_template('gewerke/add.html', form=dict(request.args))

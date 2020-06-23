@@ -1,6 +1,7 @@
 """ The main setup. Import views and register extensions. """
 
 from flask import Flask
+from flask_admin.contrib.sqla import ModelView
 
 from .extensions import admin, db
 from .views.main import main
@@ -27,3 +28,9 @@ def create_app(environment=None):
 def register_extensions(app):
     db.init_app(app)
     
+    from flask_admin import Admin
+    from .models import Trade, Company
+
+    admin = Admin(app, name='kds', template_mode='bootstrap3')
+    admin.add_view(ModelView(Trade, db.session))
+    admin.add_view(ModelView(Company, db.session))

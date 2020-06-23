@@ -6,24 +6,28 @@
   {% block content %}
 
     <h1>Hinzufügen</h1>
-    {% for m in msg %}
-
-    <div class="alert alert-danger" role="alert">
-      {{ m.error }}
-    </div>
-    {% endfor %}
-    <form method="POST" role="form">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }}" role="alert">
+        {{ message }}
+      </div>
+      {% endfor %}
+    {% endif %}
+    <form action="/gewerke/" method="POST" role="form">
         <div class="input-groud-mb3">
           <div class="form-group col-md-6">
             <label for="_index">Index</label>
-            <input type="text" class="form-control is-invalid" name="_index" placeholder="000" value="{{ form._index }}">
+            <input type="text" class="form-control {{ form['_index-class'] }}" name="_index" placeholder="000" value="{{ form['_index-text'] }}">
           </div>
           <div class="form-group col-md-6">
             <label for="name">Bezeichnung</label>
-            <input type="text" class="form-control" name="name" placeholder="Gewerk" value="{{ form.name }}">
+            <input type="text" class="form-control {{ form['name-class'] }}" name="name" placeholder="Gewerk" value="{{ form['name-text'] }}">
           </div>
         </div>
         <input type="hidden" name="action" value="add">
         <input type="submit" class="btn btn-primary" value="Speichern">
-      </form>
-      {% endblock %}
+    </form>
+    {% endwith %}
+
+  {% endblock %}
