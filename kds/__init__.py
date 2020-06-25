@@ -15,12 +15,16 @@ def create_app(environment=None):
     from . import extensions, routes
 
     app = Flask(__name__)
+
+    if environment == 'dev':
+        app.config.from_object('kds.config.ConfigDev')
+
     if environment == 'production':
         app.config.from_object('instance.config.ConfigProd')
-    if environment == 'development':
-        app.config.from_object('instance.config.ConfigDev')
+
     if environment == 'testing':
-        pass
+        print('### Testing not implemented. ###')
+        return
 
     extensions.register_all(app)
     routes.init_app(app)

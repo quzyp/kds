@@ -1,5 +1,3 @@
-#!/usr/bin/env python
- 
 import os
 import pathlib
 import subprocess
@@ -8,31 +6,51 @@ import datetime
 
 from kds import create_app
 
-project_root = pathlib.Path(__file__).resolve().parent
+PROJECT_ROOT = pathlib.Path(__file__).resolve().parent
+
+def run_app():
+    try:
+        env = os.environ['FLASK_ENV']
+    except KeyError:
+        env = 'dev'
+        os.environ['FLASK_ENV'] = env
+    app = create_app(env)
+    app.run()
+
+def run_coverage():
+    now = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+    output = PROJECT_ROOT / 'dev' / f'coverage_report_{now}'
+    htmlcov = PROJECT_ROOT / 'dev' / 'htmlcov'
+    os.environ['COVERAGE_FILE'] = str(output)
+    cmd = 'coverage run -m unittest discover'
+    subprocess.call(cmd, shell=True)
+    cmd = f'coverage html -d {htmlcov} --omit="venv/*"'
+    subprocess.call(cmd, shell=True)
+
+def run_pylint():
+    now = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+    rcfile = PROJECT_ROOT / '.pylintrc'
+    output = PROJECT_ROOT / 'dev' / f'pylint_report_{now}'
+    cmd = f'pylint kds --rcfile {rcfile} > {output}'
+    subprocess.call(cmd, shell=True)
+
+def run_test():
+    print('Tests not implemented.')
+
 
 if __name__ == '__main__':
     operation = sys.argv[-1]
-    now = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-
-    if len(sys.argv) == 1:
-        os.environ['FLASK_ENV'] = 'development'
-        app = create_app('development')
-        app.run()
-    
-    if operation == 'coverage':
-        output = project_root / 'dev' / f'coverage_report_{now}'
-        htmlcov = project_root / 'dev' / 'htmlcov'
-        os.environ['COVERAGE_FILE'] = str(output)
-        cmd = f'coverage run -m unittest discover'
-        subprocess.call(cmd, shell=True)
-        cmd = f'coverage html -d {htmlcov} --omit="venv/*"'
-        subprocess.call(cmd, shell=True)
-
-    if operation == 'pylint':
-        rcfile = project_root / '.pylintrc'
-        output = project_root / 'dev' / f'pylint_report_{now}'
-        cmd = f'pylint kds --rcfile {rcfile} > {output}'
-        subprocess.call(cmd, shell=True)
-
-    if operation == 'test':
-        print('Tests not implemented yet.')
+    modes = {'app': run_app, 
+             'coverage': run_coverage,
+             'pylint': run_pylint,
+             'test': run_test}
+    try:
+        modes[operation]()
+    except KeyError:
+        # Display some information when call fails
+        print('Usage: run.py [mode]\n')
+        print('Available modes are:')
+        for mode in modes:
+            print(f'* {mode}')
+        curr_env = os.environ.get('FLASK_ENV', '[None]')
+        print(f'\n$FLASK_ENV is currently set to {curr_env}')
