@@ -1,7 +1,11 @@
-from wtforms import (BooleanField, Form, HiddenField, StringField, SubmitField,
-                     validators)
+""" Custom fields for WTForm fields, usually by subclassing."""
 
-class StringField2(StringField):
+from wtforms import StringField, validators
+
+from .utils import pick_from_dict, popget
+
+
+class InputText(StringField):
     """ A modified StringField for convienence and localisation. """
 
     def __init__(self, *args, form_control=True, placeholder='', **kwargs):
@@ -25,29 +29,3 @@ class StringField2(StringField):
         if placeholder:
             render_kw['placeholder'] = placeholder
         super().__init__(*args, vals, **kwargs, render_kw=render_kw)
-
-
-class GewerkeForm(Form):
-    number = StringField2('Nummer', min=3, max=3, placeholder='000')
-    title = StringField2('Bezeichnung', min=1, placeholder='Gewerk')
-    action = HiddenField('action', default='add')
-    submit = SubmitField('Speichern', render_kw={'class': 'btn btn-primary'})
-
-
-def pick_from_dict(input_dict, *args):
-    filtered_dict = {}
-    for key in args:
-        try:
-            filtered_dict[key] = input_dict[key]
-            del input_dict[key]
-        except KeyError:
-            pass
-    return filtered_dict, input_dict
-
-def popget(input_dict, key, default):
-    try:
-        value = input_dict.pop(key)
-    except KeyError:
-        value = default
-    return value
-
