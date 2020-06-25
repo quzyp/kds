@@ -18,6 +18,7 @@ class ConfigDev(Config):
     ENVIRON = 'dev'
     SQLALCHEMY_ECHO = True
     ASSETS_DEBUG = True
+    SECRET_KEY = 'shush'
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
     print('#################################')

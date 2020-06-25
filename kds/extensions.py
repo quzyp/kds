@@ -8,7 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 def register_all(app):
     """ Register the extensions.
 
@@ -20,8 +19,9 @@ def register_all(app):
     with app.app_context():
         db.create_all()
 
-    from .models import Trade, Company
+    from .models import Gewerk, Unternehmen
 
     admin = Admin(app, name='kds', template_mode='bootstrap3')
-    admin.add_view(ModelView(Trade, db.session))
-    admin.add_view(ModelView(Company, db.session))
+    admin.add_view(ModelView(Gewerk, db.session))
+    admin.add_view(ModelView(Unternehmen, db.session))
+

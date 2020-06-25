@@ -4,7 +4,7 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from sqlalchemy import exc
 
 from ..extensions import db
-from ..models import Trade
+from ..models import Gewerk
 from ..forms import GewerkeForm
 
 gewerke = Blueprint('gewerke', __name__)
@@ -25,7 +25,7 @@ def index():
         get_args = {}
         _index = request.form['_index']
         name = request.form['name']
-        t = Trade(_index=_index, name=name)
+        t = Gewerk(_index=_index, name=name)
         db.session.add(t)
         try:
             db.session.commit()
@@ -39,10 +39,10 @@ def index():
 
     if action == 'delete':
         _id = int(request.args.get('id'))
-        Trade.query.filter_by(_id=_id).delete()
+        Gewerk.query.filter_by(_id=_id).delete()
         db.session.commit()
 
-    table_data = Trade.query.all()
+    table_data = Gewerk.query.all()
 
     # else, show default template
     return render_template('gewerke/index.html', data=table_data)
