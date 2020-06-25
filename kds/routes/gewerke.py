@@ -9,7 +9,6 @@ from ..forms import GewerkeForm
 
 gewerke = Blueprint('gewerke', __name__)
 
-
 @gewerke.route('/', methods=['GET', 'POST'])
 def index():
     """Default table view - show the table and provide form and
@@ -21,25 +20,9 @@ def index():
     if not action:
         action = request.args.get('action')
 
-    if action == 'add':
-        get_args = {}
-        _index = request.form['_index']
-        name = request.form['name']
-        t = Gewerk(_index=_index, name=name)
-        db.session.add(t)
-        try:
-            db.session.commit()
-            flash(f'"{name}" erfolgreich hinzugefügt.', 'success')
-        except exc.IntegrityError:
-            flash('Index bereits vorhanden.', 'danger')
-            get_args['_index-class'] = 'is-invalid'#
-            get_args['_index-text'] = _index
-            get_args['name-text'] = name
-        return redirect(url_for('gewerke.add', **get_args))
-
     if action == 'delete':
-        _id = int(request.args.get('id'))
-        Gewerk.query.filter_by(_id=_id).delete()
+        id_ = int(request.args.get('id'))
+        Gewerk.query.filter_by(id=id_).delete()
         db.session.commit()
 
     table_data = Gewerk.query.all()
@@ -52,9 +35,18 @@ def add():
     form = GewerkeForm(request.form)
 
     if request.method == 'POST' and form.validate():
-        pass
+        index_ = request.form['index']
+        titel = request.form['titel']
+        t = Gewerk(index=index_, titel=titel)
+        db.session.add(t)
+        try:
+            db.session.commit()
+            flash(f'"{titel}" erfolgreich hinzugefügt.', 'success')
+            form.index.data = ''
+            form.titel.data = ''
+        except exc.IntegrityError:
+            form.index.errors.append(f'Index {index_} bereits vorhanden.')
     form = inject_css_on_error(form)
-
     return render_template('gewerke/add.html', form=form)
 
 def inject_css_on_error(form, css=' is-invalid'):

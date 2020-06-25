@@ -19,7 +19,7 @@
     {% for field, messages in form.errors.items() %}
       {% for message in messages %}
         <div class="alert alert-danger" role="alert">
-          Fehler: {{ message}}
+          Fehler: {{ message }}
         </div>
       {% endfor %}
     {% endfor %}
@@ -27,12 +27,12 @@
     <form action="/gewerke/add" method="POST" role="form">
       <div class="input-groud-mb3">
         <div class="form-group col-md-6">
-          {{ form.number.label }}
-          {{ form.number }}
+          {{ form.index.label }}
+          {{ form.index }}
         </div>
         <div class="form-group col-md-6">
-          {{ form.title.label }}
-          {{ form.title }}
+          {{ form.titel.label }}
+          {{ form.titel }}
         </div>
           {{ form.action }}
           {{ form.submit }}

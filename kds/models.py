@@ -30,4 +30,4 @@ class Gewerk(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     index = db.Column(db.String(3), unique=True, nullable=False)
-    titel = db.Column(db.String(255), unique=True, nullable=False)
+    titel = db.Column(db.String(255), unique=False, nullable=False)
