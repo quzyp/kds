@@ -1,6 +1,5 @@
 """ Module docstring. """
 
-#from flask import current_app
 from .extensions import db
 
 class TestTable(db.Model):

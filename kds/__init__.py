@@ -1,14 +1,19 @@
-""" The main setup. Import views and register extensions. """
+# disable pylint check for import outside top-level.
+# pylint: disable=C0415
+
+""" The main setup. Import all parts and register extensions. """
 
 from flask import Flask
-from flask_admin.contrib.sqla import ModelView
 
-from .extensions import admin, db
-from .views.main import main
-from .views.kalkulation import kalkulation
-from .views.gewerke import gewerke
 
 def create_app(environment=None):
+    """ The app factory.
+
+    :param str environment: The environment the app should run in.
+    :return: The Flask aoo
+    """
+    from . import extensions, routes
+
     app = Flask(__name__)
     if environment == 'production':
         app.config.from_object('instance.config.ConfigProd')
@@ -17,20 +22,7 @@ def create_app(environment=None):
     if environment == 'testing':
         pass
 
-    register_extensions(app)
-
-    app.register_blueprint(main, url_prefix='/')
-    app.register_blueprint(kalkulation, url_prefix='/kalkulation')
-    app.register_blueprint(gewerke, url_prefix='/gewerke')
+    extensions.register_all(app)
+    routes.init_app(app)
 
     return app
-
-def register_extensions(app):
-    db.init_app(app)
-    
-    from flask_admin import Admin
-    from .models import Trade, Company
-
-    admin = Admin(app, name='kds', template_mode='bootstrap3')
-    admin.add_view(ModelView(Trade, db.session))
-    admin.add_view(ModelView(Company, db.session))
