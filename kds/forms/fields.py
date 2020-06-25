@@ -1,4 +1,4 @@
-""" Custom fields for WTForm fields, usually done by subclassing."""
+""" Custom fields for WTForm fields, usually by subclassing."""
 
 from wtforms import StringField, validators
 
