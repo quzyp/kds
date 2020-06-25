@@ -16,14 +16,13 @@ def create_app(environment=None):
 
     app = Flask(__name__)
 
-    if environment == 'dev':
-        app.config.from_object('kds.config.ConfigDev')
-
-    if environment == 'production':
-        app.config.from_object('instance.config.ConfigProd')
-
-    if environment == 'testing':
-        print('### Testing not implemented. ###')
+    configs = {'dev': (lambda: app.config.from_object('kds.config.ConfigDev')),
+               'prod': (lambda: app.config.from_object('instance.config.ConfigProd')),
+               'testing': (lambda: app.config.from_object('kds.config.ConfigTesting'))}
+    try:
+        configs[environment]()
+    except KeyError:
+        print(f'### Invalid FLASK_ENV: {environment} ###')
         return
 
     extensions.register_all(app)
