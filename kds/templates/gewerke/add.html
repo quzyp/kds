@@ -1,33 +1,42 @@
  
   {% extends 'base.html' %}
 
-  {% block title %}TestTable{% endblock %}
+  {% block title %}Gewerke{% endblock %}
 
   {% block content %}
 
     <h1>Hinzufügen</h1>
     {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      {% for category, message in messages %}
-      <div class="alert alert-{{ category }}" role="alert">
-        {{ message }}
-      </div>
-      {% endfor %}
-    {% endif %}
-    <form action="/gewerke/" method="POST" role="form">
-        <div class="input-groud-mb3">
-          <div class="form-group col-md-6">
-            <label for="_index">Index</label>
-            <input type="text" class="form-control {{ form['_index-class'] }}" name="_index" placeholder="000" value="{{ form['_index-text'] }}">
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}" role="alert">
+            {{ message }}
           </div>
-          <div class="form-group col-md-6">
-            <label for="name">Bezeichnung</label>
-            <input type="text" class="form-control {{ form['name-class'] }}" name="name" placeholder="Gewerk" value="{{ form['name-text'] }}">
-          </div>
-        </div>
-        <input type="hidden" name="action" value="add">
-        <input type="submit" class="btn btn-primary" value="Speichern">
-    </form>
+        {% endfor %}
+      {% endif %}
     {% endwith %}
+
+    {% for field, messages in form.errors.items() %}
+      {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+          Fehler: {{ message}}
+        </div>
+      {% endfor %}
+    {% endfor %}
+
+    <form action="/gewerke/add" method="POST" role="form">
+      <div class="input-groud-mb3">
+        <div class="form-group col-md-6">
+          {{ form.number.label }}
+          {{ form.number }}
+        </div>
+        <div class="form-group col-md-6">
+          {{ form.title.label }}
+          {{ form.title }}
+        </div>
+          {{ form.action }}
+          {{ form.submit }}
+      </div>
+    </form>
 
   {% endblock %}

@@ -5,6 +5,7 @@ from sqlalchemy import exc
 
 from ..extensions import db
 from ..models import Trade
+from ..forms import GewerkeForm
 
 gewerke = Blueprint('gewerke', __name__)
 
@@ -48,4 +49,22 @@ def index():
 
 @gewerke.route('/add', methods=['GET', 'POST'])
 def add():
-    return render_template('gewerke/add.html', form=dict(request.args))
+    form = GewerkeForm(request.form)
+
+    if request.method == 'POST' and form.validate():
+        pass
+    form = inject_css_on_error(form)
+
+    return render_template('gewerke/add.html', form=form)
+
+def inject_css_on_error(form, css=' is-invalid'):
+    for field in form:
+        try:
+            classes = field.render_kw['class']
+        except TypeError:
+            continue
+        if field.name in form.errors:
+            field.render_kw['class'] = classes + css
+        else:
+            field.render_kw['class'] = classes.replace(css, '')
+    return form
