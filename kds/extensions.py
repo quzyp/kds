@@ -21,7 +21,14 @@ def register_all(app):
 
     from .models import Gewerk, Unternehmen
 
+    if app.env == 'dev':
+        with app.app_context():
+            mock = Gewerk(index='123', titel='Betonarbeiten')
+            db.session.add(mock)
+            mock = Gewerk(index='210', titel='Starkstrom')
+            db.session.add(mock)
+            db.session.commit()
+
     admin = Admin(app, name='kds', template_mode='bootstrap3')
     admin.add_view(ModelView(Gewerk, db.session))
     admin.add_view(ModelView(Unternehmen, db.session))
-
