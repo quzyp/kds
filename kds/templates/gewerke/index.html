@@ -27,8 +27,8 @@
       <tr>
         <td>{{ field.index }}</td>
         <td>{{ field.titel }}</td>
-        <td><a href="?action=edit&id={{ field._id }}" style="color: #6060da">Bearbeiten</a></td>
-        <td><a href="?action=delete&id={{ field._id }}" style="color: #da6060">Löschen</a></td>
+        <td><a href="?action=edit&id={{ field.id }}" style="color: #6060da">Bearbeiten</a></td>
+        <td><a href="?action=delete&id={{ field.id }}" style="color: #da6060">Löschen</a></td>
       </tr>
       {% endfor %}
     </tbody>
