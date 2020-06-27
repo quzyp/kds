@@ -28,24 +28,21 @@ def index():
     table_data = Unternehmen.query.all()
 
     # else, show default template
-    return render_template('Unternehmen/index.html', data=table_data)
+    return render_template('unternehmen/index.html', data=table_data)
 
 @unternehmen.route('/add', methods=['GET', 'POST'])
 def add():
     form = UnternehmenForm(request.form)
-    gewerke = [(g.index, g.titel) for g in Gewerk.query.all()]
+    gewerke = [(g.id, g.titel) for g in Gewerk.query.all()]
     form.gewerke.choices = gewerke
 
     if request.method == 'POST' and form.validate():
-        for x, y in request.form.items():
-            print(x, y)
         name = request.form['name']
         adr_strasse = request.form['adr_strasse']
         adr_plz = request.form['adr_plz']
         adr_stadt = request.form['adr_stadt']
-        gewerke = request.form['gewerke']
-        gewerke = Gewerk.query.filter_by(index=gewerke).all()
-        print(gewerke)
+        gewerke = request.form.getlist('gewerke')
+        gewerke = [Gewerk.query.get(int(x)) for x in gewerke]
         t = Unternehmen(name=name, adr_strasse=adr_strasse, adr_plz=adr_plz, adr_stadt=adr_stadt, gewerke=gewerke)
         db.session.add(t)
         try:

@@ -5,6 +5,7 @@
 
 from flask import Flask
 
+from .devdata import filldb
 
 def create_app(environment=None):
     """ The app factory.
@@ -26,6 +27,8 @@ def create_app(environment=None):
         return
 
     extensions.register_all(app)
+    if environment == 'dev':
+        devdata.filldb(app)
     routes.init_app(app)
 
     return app

@@ -16,16 +16,21 @@
     <thead>
       <tr>
         <th class="text-center">Name</th>
+        <th class="text-center">PLZ</th>
+        <th class="text-center">Stadt</th>
+        <th class="text-center">Fon</th>
         <th class="text-center">Gewerke</th>
         <th class="text-center"></th>
         <th class="text-center"></th>
-
       </tr>
     </thead>
     <tbody>
       {% for field in data %}
       <tr>
         <td>{{ field.name }}</td>
+        <td>{{ field.adr_plz }}</td>
+        <td>{{ field.adr_stadt }}</td>
+        <td>{{ field.con_fon }}</td>
         <td>{{ field.gewerke }}</td>
         <td><a href="?action=edit&id={{ field.id }}" style="color: #6060da">Bearbeiten</a></td>
         <td><a href="?action=delete&id={{ field.id }}" style="color: #da6060">Löschen</a></td>
