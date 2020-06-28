@@ -35,18 +35,29 @@ def add():
     form = GewerkeForm(request.form)
 
     if request.method == 'POST' and form.validate():
+        id_ = int(request.form['id'])
         index_ = request.form['index']
         titel = request.form['titel']
-        t = Gewerk(index=index_, titel=titel)
-        db.session.add(t)
-        try:
-            db.session.commit()
-            flash(f'"{titel}" erfolgreich hinzugefügt.', 'success')
-            form.index.data = ''
-            form.titel.data = ''
-        except exc.IntegrityError:
-            form.index.errors.append(f'Index {index_} bereits vorhanden.')
-    form = inject_css_on_error(form)
+        if id_ == 0:
+            # Add a new item
+            t = Gewerk(index=index_, titel=titel)
+            db.session.add(t)
+            try:
+                db.session.commit()
+                flash(f'"{titel}" erfolgreich hinzugefügt.', 'success')
+                form.index.data = ''
+                form.titel.data = ''
+            except exc.IntegrityError:
+                form.index.errors.append(f'Index {index_} bereits vorhanden.')
+            form = inject_css_on_error(form)
+            return render_template('gewerke/add.html', form=form)
+        # Edit an existing item
+
+
+@gewerke.route('/edit', methods=['GET', 'POST'])
+def edit():
+    id_ = request.args['id']
+    form = GewerkeForm(obj=Gewerk.query.get(id_))
     return render_template('gewerke/add.html', form=form)
 
 def inject_css_on_error(form, css=' is-invalid'):

@@ -7,10 +7,9 @@ from .fields import InputText
 
 class GewerkeForm(Form):
     """ Form for Gewerke. """
+    id = HiddenField('Id', default=0)
     index = InputText('Nummer', min=3, max=3, placeholder='000')
     titel = InputText('Bezeichnung', min=1, placeholder='Gewerk')
-
-    action = HiddenField('action', default='add')
     submit = SubmitField('Speichern', render_kw={'class': 'btn btn-primary'})
 
 class UnternehmenForm(Form):
