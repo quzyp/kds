@@ -12,5 +12,5 @@ def init_app(app):
     """
 
     app.register_blueprint(main, url_prefix='/')
-    app.register_blueprint(gewerke, url_prefix='/gewerke')
-    app.register_blueprint(unternehmen, url_prefix='/unternehmen')
+    #app.register_blueprint(gewerke, url_prefix='/gewerke')
+    #app.register_blueprint(unternehmen, url_prefix='/unternehmen')
