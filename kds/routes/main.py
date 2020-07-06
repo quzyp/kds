@@ -2,7 +2,8 @@
 
 import pathlib
 
-from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from flask import Blueprint, current_app, flash, redirect, render_template, request, url_for
+from sqlalchemy import exc
 
 from ..extensions import db
 from ..models import Unternehmen, Gewerk
@@ -23,12 +24,14 @@ def index():
 
 @main.route('/<tablename>', methods=['GET', 'POST'])
 def tablepage(tablename):
+    """ A generalized function for all data categories. """
     action = request.form.get('action', '')
     form = mapping[tablename]['form'](request.form)
 
+    template_add = f'{tablename}/add.html'
+
     if action == 'form':
-        template = f'{tablename}/add.html'
-        return render_template(template, form=form)
+        return render_template(template_add, form=form)
 
     if action == 'add' and form.validate():
         if form.data['id'] == '0':
@@ -41,11 +44,35 @@ def tablepage(tablename):
             db.session.add(row)
             try:
                 db.session.commit()
+                name = form.data[form.readable]
+                flash(f'"{name}" erfolgreich hinzugefügt.', 'success')
+                for element in form: # set up a clean form
+                    element.data = ''
+                    form.id.data = '0'
             except exc.IntegrityError:
-                form.index.errors.append(f'Index {index_} bereits vorhanden.')
+                form.index.errors.append('Eintrag bereits vorhanden oder ungültig.')
             form = inject_css_on_error(form)
-            return render_template(template, form=form)
+            return render_template(template_add, form=form)
 
-    table_data = mapping[tablename]['model'].query.all()
-    template = f'{tablename}/index.html'
-    return render_template(template, data=table_data)
+    if action == 'add' and not form.validate():
+        form = inject_css_on_error(form)
+        return render_template(template_add, form=form)
+
+    if not action:
+        # Display the main table view.
+        table_data = mapping[tablename]['model'].query.all()
+        template = f'{tablename}/index.html'
+        return render_template(template, data=table_data)
+
+ 
+def inject_css_on_error(form, css=' is-invalid'):
+    for field in form:
+        try:
+            classes = field.render_kw['class']
+        except TypeError:
+            continue
+        if field.name in form.errors:
+            field.render_kw['class'] = classes + css
+        else:
+            field.render_kw['class'] = classes.replace(css, '')
+    return form

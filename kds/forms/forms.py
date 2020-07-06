@@ -11,6 +11,7 @@ class GewerkeForm(Form):
     index = InputText('Nummer', min=3, max=3, placeholder='000')
     titel = InputText('Bezeichnung', min=1, placeholder='Gewerk')
     submit = SubmitField('Speichern', render_kw={'class': 'btn btn-primary'})
+    readable = 'titel'
 
 class UnternehmenForm(Form):
     """ Form for Unternehmen. """
@@ -22,3 +23,4 @@ class UnternehmenForm(Form):
     con_fax = InputText('Fax')
     gewerke = Select2Field('Gewerke', coerce=int, render_kw={'data-role': 'select2', 'multiple': True, 'class': 'form-control'})
     submit = SubmitField('Speichern', render_kw={'class': 'btn btn-primary'})
+    readable = 'name'
