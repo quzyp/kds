@@ -24,29 +24,46 @@
       {% endfor %}
     {% endfor %}
 
-    <form action="/unternehmen/add" method="POST" role="form">
-      <div class="input-groud-mb3">
-        <div class="form-group col-md-6">
-          {{ form.name.label }}
-          {{ form.name }}
+    <form action="/unternehmen" method="POST" role="form">
+      <div class="input-group-mb3">
+        <div class="row">
+          <div class="form-group col-md-6">
+            {{ form.name.label }}
+            {{ form.name }}
+          </div>
         </div>
-        <div class="form-group col-md-6">
-          {{ form.adr_strasse.label }}
-          {{ form.adr_strasse }}
+        <div class="row">
+          <div class="form-group col-md-6">
+            {{ form.adr_strasse.label }}
+            {{ form.adr_strasse }}
+          </div>
         </div>
-        <div class="form-group col-md-6">
-          {{ form.adr_plz.label }}
-          {{ form.adr_plz }}
+        <div class="row">
+          <div class="form-group col-md-6">
+            {{ form.adr_plz.label }}
+            {{ form.adr_plz }}
+          </div>
+          <div class="form-group col-md-6">
+            {{ form.adr_stadt.label }}
+            {{ form.adr_stadt }}
+          </div>
         </div>
-        <div class="form-group col-md-6">
-          {{ form.adr_stadt.label }}
-          {{ form.adr_stadt }}
+        <div class="row"> 
+          <div class="form-group col-md-6">
+            {{ form.con_fon.label }}
+            {{ form.con_fon }}
+          </div>
+          <div class="form-group col-md-6">
+            {{ form.con_fax.label }}
+            {{ form.con_fax }}
+          </div>
         </div>
         <div class="form-group col-md-6">
           {{ form.gewerke.label }}
           {{ form.gewerke }}
         </div>
-          {{ form.action }}
+          {{ form.id }}
+          <input type="hidden" name="action" value="add">
           {{ form.submit }}
       </div>
     </form>

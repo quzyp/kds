@@ -15,6 +15,7 @@ class GewerkeForm(Form):
 
 class UnternehmenForm(Form):
     """ Form for Unternehmen. """
+    id = HiddenField('Id', default=0)
     name = InputText('Name', min=3)
     adr_strasse = InputText('Straße, Nummer', min=3)
     adr_plz = InputText('Postleitzahl', min=5, max=5)

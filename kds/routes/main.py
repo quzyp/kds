@@ -2,12 +2,13 @@
 
 import pathlib
 
-from flask import Blueprint, current_app, flash, redirect, render_template, request, url_for
+from flask import (Blueprint, current_app, flash, redirect, render_template,
+                   request, url_for)
 from sqlalchemy import exc
 
 from ..extensions import db
-from ..models import Unternehmen, Gewerk
 from ..forms import GewerkeForm, UnternehmenForm
+from ..models import Gewerk, Unternehmen
 
 main = Blueprint('main', __name__)
 mapping = {'gewerke': {'model': Gewerk, 'form': GewerkeForm},
@@ -19,14 +20,22 @@ def index():
     functions for modifying that table.
 
     """
-    #return redirect(url_for('gewerke.index'))
     return redirect('/gewerke')
 
 @main.route('/<tablename>', methods=['GET', 'POST'])
 def tablepage(tablename):
     """ A generalized function for all data categories. """
     action = request.form.get('action', '')
+    if tablename not in mapping:
+        return '404'
+
     form = mapping[tablename]['form'](request.form)
+    model = mapping[tablename]['model']
+
+    if hasattr(form, 'gewerke'):
+        # If the form expects gewerke for drop-down list, fill it from db.
+        gewerke = [(g.id, g.titel) for g in Gewerk.query.all()]
+        form.gewerke.choices = gewerke
 
     template_add = f'{tablename}/add.html'
 
@@ -35,14 +44,14 @@ def tablepage(tablename):
 
     if action == 'add' and form.validate():
         if form.data['id'] == '0':
-            # FIXME: these three lines filte the form dict so that only 
-            # real db columns are passed. Ugly.
-            columns = [x.name.split('.')[-1] for x in Gewerk.__dict__['__table__'].__dict__['_columns']]
+            # Get the table columns and fill with posted form data.
+            table_columns = model.__dict__['__table__'].__dict__['_columns']
+            columns = [x.name.split('.')[-1] for x in table_columns]
             columns.remove('id')
             fields = {x: form.data[x] for x in columns}
-            row = mapping[tablename]['model'](**fields)
+            row = model(**fields)
             db.session.add(row)
-            try:
+            try: # sqlalchemy throws exception when constrains are missed.
                 db.session.commit()
                 name = form.data[form.readable]
                 flash(f'"{name}" erfolgreich hinzugefügt.', 'success')
@@ -64,8 +73,10 @@ def tablepage(tablename):
         template = f'{tablename}/index.html'
         return render_template(template, data=table_data)
 
- 
 def inject_css_on_error(form, css=' is-invalid'):
+    """ Add a specific class to all form fields which have an error
+    associated with it. The error comes from WTForms.
+    """
     for field in form:
         try:
             classes = field.render_kw['class']
