@@ -2,6 +2,8 @@
 
 """ Register the extensions. """
 
+import pathlib
+
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_sqlalchemy import SQLAlchemy
@@ -24,4 +26,3 @@ def register_all(app):
     admin = Admin(app, name='kds', template_mode='bootstrap3')
     admin.add_view(ModelView(Gewerk, db.session))
     admin.add_view(ModelView(Unternehmen, db.session))
-

@@ -1,0 +1,71 @@
+ 
+  {% extends 'base.html' %}
+
+  {% block title %}Gewerke{% endblock %}
+
+  {% block content %}
+
+    <h1>Hinzufügen</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% for field, messages in form.errors.items() %}
+      {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+          Fehler: {{ message }}
+        </div>
+      {% endfor %}
+    {% endfor %}
+
+    <form action="/unternehmen" method="POST" role="form">
+      <div class="input-group-mb3">
+        <div class="row">
+          <div class="form-group col-md-6">
+            {{ form.name.label }}
+            {{ form.name }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            {{ form.adr_strasse.label }}
+            {{ form.adr_strasse }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            {{ form.adr_plz.label }}
+            {{ form.adr_plz }}
+          </div>
+          <div class="form-group col-md-6">
+            {{ form.adr_stadt.label }}
+            {{ form.adr_stadt }}
+          </div>
+        </div>
+        <div class="row"> 
+          <div class="form-group col-md-6">
+            {{ form.con_fon.label }}
+            {{ form.con_fon }}
+          </div>
+          <div class="form-group col-md-6">
+            {{ form.con_fax.label }}
+            {{ form.con_fax }}
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          {{ form.gewerke.label }}
+          {{ form.gewerke }}
+        </div>
+          {{ form.id }}
+          <input type="hidden" name="action" value="add">
+          {{ form.submit }}
+      </div>
+    </form>
+
+  {% endblock %}

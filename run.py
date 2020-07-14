@@ -12,7 +12,7 @@ def run_app():
     try:
         env = os.environ['FLASK_ENV']
     except KeyError:
-        env = 'dev'
+        env = 'development'
         os.environ['FLASK_ENV'] = env
     app = create_app(env)
     app.run()

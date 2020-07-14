@@ -15,9 +15,9 @@ class ConfigDev(Config):
     database and debugging. """
 
     DEBUG = True
-    ENVIRON = 'dev'
-    SQLALCHEMY_ECHO = True
-    ASSETS_DEBUG = True
+    ENVIRON = 'development'
+    #SQLALCHEMY_ECHO = True
+    #ASSETS_DEBUG = True
     SECRET_KEY = 'shush'
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
 

@@ -5,6 +5,7 @@
 
 from flask import Flask
 
+from . import devdata
 
 def create_app(environment=None):
     """ The app factory.
@@ -16,7 +17,7 @@ def create_app(environment=None):
 
     app = Flask(__name__)
 
-    configs = {'dev': (lambda: app.config.from_object('kds.config.ConfigDev')),
+    configs = {'development': (lambda: app.config.from_object('kds.config.ConfigDev')),
                'prod': (lambda: app.config.from_object('instance.config.ConfigProd')),
                'testing': (lambda: app.config.from_object('kds.config.ConfigTesting'))}
     try:
@@ -26,6 +27,8 @@ def create_app(environment=None):
         return
 
     extensions.register_all(app)
+    if environment == 'development':
+        devdata.filldb(app)
     routes.init_app(app)
 
     return app

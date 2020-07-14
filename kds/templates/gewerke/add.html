@@ -24,7 +24,7 @@
       {% endfor %}
     {% endfor %}
 
-    <form action="/gewerke/add" method="POST" role="form">
+    <form action="/gewerke" method="POST" role="form">
       <div class="input-groud-mb3">
         <div class="form-group col-md-6">
           {{ form.index.label }}
@@ -34,7 +34,8 @@
           {{ form.titel.label }}
           {{ form.titel }}
         </div>
-          {{ form.action }}
+          {{ form.id }}
+          <input type="hidden" name="action" value="add">
           {{ form.submit }}
       </div>
     </form>
