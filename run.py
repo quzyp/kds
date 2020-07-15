@@ -37,13 +37,22 @@ def run_pylint():
 def run_test():
     print('Tests not implemented.')
 
+def run_babel():
+    cmd = 'pybabel extract -F kds/lang/babel.cfg -o kds/lang/messages.pot kds/'
+    cme = 'pybabel init -i kds/lang/messages.pot -d kds/lang -l de'
+    cmf = 'pybabel compile -d kds/lang'
+    subprocess.call(cmd, shell=True)
+    subprocess.call(cme, shell=True)
+    subprocess.call(cmf, shell=True)
+    print('Ran babel.')
 
 if __name__ == '__main__':
     operation = sys.argv[-1]
     modes = {'app': run_app, 
              'coverage': run_coverage,
              'pylint': run_pylint,
-             'test': run_test}
+             'test': run_test,
+             'babel': run_babel}
     try:
         modes[operation]()
     except KeyError:

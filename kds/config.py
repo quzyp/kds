@@ -1,14 +1,17 @@
 """ The default configuration, aimed at development. The production
 configuration goes in $root/instance/config.py """
 
+import pathlib
+
 class Config:
     """ Basic configuration. """
 
     TESTING = False
     DEBUG = False
     ENVIRON = 'None'
+    DIR_ROOT = pathlib.Path(__file__).resolve().parent.parent
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
+    BABEL_TRANSLATION_DIRECTORIES = str(DIR_ROOT / 'kds' / 'lang')
 
 class ConfigDev(Config):
     """ The development configuration. Uses an in-memory

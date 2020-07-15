@@ -3,16 +3,34 @@
 import pathlib
 
 from flask import (Blueprint, current_app, flash, redirect, render_template,
-                   request, url_for)
+                   request, url_for, g)
+from flask_babel import gettext, lazy_gettext, refresh, get_locale
 from sqlalchemy import exc
 
-from ..extensions import db
+from ..extensions import db, babel
 from ..forms import GewerkeForm, UnternehmenForm
 from ..models import Gewerk, Unternehmen
 
 main = Blueprint('main', __name__)
 mapping = {'gewerke': {'model': Gewerk, 'form': GewerkeForm},
            'unternehmen': {'model': Unternehmen, 'form': UnternehmenForm}}
+
+@babel.localeselector
+def get_locale():
+    # if a user is logged in, use the locale from the user settings
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+    # otherwise try to guess the language from the user accept
+    # header the browser transmits.  We support de/fr/en in this
+    # example.  The best match wins.
+    return request.accept_languages.best_match(['de', 'en'])
+
+@babel.timezoneselector
+def get_timezone():
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.timezone
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -59,7 +77,7 @@ def tablepage(tablename):
                     element.data = ''
                     form.id.data = '0'
             except exc.IntegrityError:
-                form.index.errors.append('Eintrag bereits vorhanden oder ungültig.')
+                form.index.errors.append(gettext(u'Invalid format or entry already in table.'))
             form = inject_css_on_error(form)
             return render_template(template_add, form=form)
 
