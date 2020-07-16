@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>kds.forms package &mdash; kds 2020-11-01 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> kds
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">kds.forms package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-kds.forms.fields">kds.forms.fields module</a></li>
+<li><a class="reference internal" href="#module-kds.forms.forms">kds.forms.forms module</a></li>
+<li><a class="reference internal" href="#module-kds.forms.utils">kds.forms.utils module</a></li>
+<li><a class="reference internal" href="#module-kds.forms">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">kds</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>kds.forms package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/kds.forms.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kds-forms-package">
+<h1>kds.forms package<a class="headerlink" href="#kds-forms-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-kds.forms.fields">
+<span id="kds-forms-fields-module"></span><h2>kds.forms.fields module<a class="headerlink" href="#module-kds.forms.fields" title="Permalink to this headline">¶</a></h2>
+<p>Custom fields for WTForm fields, usually by subclassing.</p>
+<dl class="py class">
+<dt id="kds.forms.fields.InputText">
+<em class="property">class </em><code class="sig-prename descclassname">kds.forms.fields.</code><code class="sig-name descname">InputText</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kds.forms.fields.InputText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">wtforms.fields.core.StringField</span></code></p>
+<p>A modified StringField for convienence and localisation.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kds.forms.forms">
+<span id="kds-forms-forms-module"></span><h2>kds.forms.forms module<a class="headerlink" href="#module-kds.forms.forms" title="Permalink to this headline">¶</a></h2>
+<p>All forms used in app, build using WTForms.</p>
+<dl class="py class">
+<dt id="kds.forms.forms.GewerkeForm">
+<em class="property">class </em><code class="sig-prename descclassname">kds.forms.forms.</code><code class="sig-name descname">GewerkeForm</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kds.forms.forms.GewerkeForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">wtforms.form.Form</span></code></p>
+<p>Form for Gewerke.</p>
+<dl class="py attribute">
+<dt id="kds.forms.forms.GewerkeForm.id">
+<code class="sig-name descname">id</code><em class="property"> = &lt;UnboundField(HiddenField, ('Id',), {'default': 0})&gt;</em><a class="headerlink" href="#kds.forms.forms.GewerkeForm.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.GewerkeForm.index">
+<code class="sig-name descname">index</code><em class="property"> = &lt;UnboundField(InputText, ('Nummer',), {'min': 3, 'max': 3, 'placeholder': '000'})&gt;</em><a class="headerlink" href="#kds.forms.forms.GewerkeForm.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.GewerkeForm.readable">
+<code class="sig-name descname">readable</code><em class="property"> = 'titel'</em><a class="headerlink" href="#kds.forms.forms.GewerkeForm.readable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.GewerkeForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Speichern',), {'render_kw': {'class': 'btn btn-primary'}})&gt;</em><a class="headerlink" href="#kds.forms.forms.GewerkeForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.GewerkeForm.titel">
+<code class="sig-name descname">titel</code><em class="property"> = &lt;UnboundField(InputText, ('Bezeichnung',), {'min': 1, 'placeholder': 'Gewerk'})&gt;</em><a class="headerlink" href="#kds.forms.forms.GewerkeForm.titel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="kds.forms.forms.UnternehmenForm">
+<em class="property">class </em><code class="sig-prename descclassname">kds.forms.forms.</code><code class="sig-name descname">UnternehmenForm</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kds.forms.forms.UnternehmenForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">wtforms.form.Form</span></code></p>
+<p>Form for Unternehmen.</p>
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.adr_plz">
+<code class="sig-name descname">adr_plz</code><em class="property"> = &lt;UnboundField(InputText, ('Postleitzahl',), {'min': 5, 'max': 5})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.adr_plz" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.adr_stadt">
+<code class="sig-name descname">adr_stadt</code><em class="property"> = &lt;UnboundField(InputText, ('Stadt',), {'min': 2})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.adr_stadt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.adr_strasse">
+<code class="sig-name descname">adr_strasse</code><em class="property"> = &lt;UnboundField(InputText, ('Straße, Nummer',), {'min': 3})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.adr_strasse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.con_fax">
+<code class="sig-name descname">con_fax</code><em class="property"> = &lt;UnboundField(InputText, ('Fax',), {})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.con_fax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.con_fon">
+<code class="sig-name descname">con_fon</code><em class="property"> = &lt;UnboundField(InputText, ('Telefon',), {})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.con_fon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.gewerke">
+<code class="sig-name descname">gewerke</code><em class="property"> = &lt;UnboundField(Select2Field, ('Gewerke',), {'coerce': &lt;class 'int'&gt;, 'render_kw': {'data-role': 'select2', 'multiple': True, 'class': 'form-control'}})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.gewerke" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.id">
+<code class="sig-name descname">id</code><em class="property"> = &lt;UnboundField(HiddenField, ('Id',), {'default': 0})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.name">
+<code class="sig-name descname">name</code><em class="property"> = &lt;UnboundField(InputText, ('Name',), {'min': 3})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.readable">
+<code class="sig-name descname">readable</code><em class="property"> = 'name'</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.readable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="kds.forms.forms.UnternehmenForm.submit">
+<code class="sig-name descname">submit</code><em class="property"> = &lt;UnboundField(SubmitField, ('Speichern',), {'render_kw': {'class': 'btn btn-primary'}})&gt;</em><a class="headerlink" href="#kds.forms.forms.UnternehmenForm.submit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-kds.forms.utils">
+<span id="kds-forms-utils-module"></span><h2>kds.forms.utils module<a class="headerlink" href="#module-kds.forms.utils" title="Permalink to this headline">¶</a></h2>
+<p>Tools and utilities used specifically for forms.</p>
+<dl class="py function">
+<dt id="kds.forms.utils.pick_from_dict">
+<code class="sig-prename descclassname">kds.forms.utils.</code><code class="sig-name descname">pick_from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_dict</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kds.forms.utils.pick_from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take items from a dict to build a new dict. Delete the items
+in the original.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dict</strong> – the dict to operate on.</p></li>
+<li><p><strong>*args</strong> – <p>the keys to pick.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The new dict and the old dict as a tuple.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="kds.forms.utils.popget">
+<code class="sig-prename descclassname">kds.forms.utils.</code><code class="sig-name descname">popget</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_dict</span></em>, <em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">default</span></em><span class="sig-paren">)</span><a class="headerlink" href="#kds.forms.utils.popget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pop and get combined.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-kds.forms">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-kds.forms" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, David Stille
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

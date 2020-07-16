@@ -11,7 +11,7 @@ from ..models import Gewerk, Unternehmen
 main = Blueprint('main', __name__)
 mapping = {'gewerke': {'model': Gewerk, 'form': GewerkeForm},
            'unternehmen': {'model': Unternehmen, 'form': UnternehmenForm}}
-
+ 
 @babel.localeselector
 def get_locale():
     # if a user is logged in, use the locale from the user settings
