@@ -19,7 +19,7 @@
     {% for field, messages in form.errors.items() %}
       {% for message in messages %}
         <div class="alert alert-danger" role="alert">
-          Fehler: {{ message }}
+          {{ _('Error') }}: {{ message }}
         </div>
       {% endfor %}
     {% endfor %}
