@@ -1,13 +1,10 @@
 """ The main route. """
 
-import pathlib
-
-from flask import (Blueprint, current_app, flash, redirect, render_template,
-                   request, url_for, g)
-from flask_babel import gettext, lazy_gettext, refresh, get_locale
+from flask import Blueprint, flash, g, redirect, render_template, request
+from flask_babel import gettext
 from sqlalchemy import exc
 
-from ..extensions import db, babel
+from ..extensions import babel, db
 from ..forms import GewerkeForm, UnternehmenForm
 from ..models import Gewerk, Unternehmen
 
@@ -21,9 +18,7 @@ def get_locale():
     user = getattr(g, 'user', None)
     if user is not None:
         return user.locale
-    # otherwise try to guess the language from the user accept
-    # header the browser transmits.  We support de/fr/en in this
-    # example.  The best match wins.
+    # otherwise try to guess the language
     return request.accept_languages.best_match(['de', 'en'])
 
 @babel.timezoneselector
@@ -36,7 +31,6 @@ def get_timezone():
 def index():
     """Default table view - show the table and provide form and
     functions for modifying that table.
-
     """
     return redirect('/gewerke')
 
@@ -72,7 +66,7 @@ def tablepage(tablename):
             try: # sqlalchemy throws exception when constrains are missed.
                 db.session.commit()
                 name = form.data[form.readable]
-                flash(f'"{name}" erfolgreich hinzugefügt.', 'success')
+                flash(gettext(u'%(name)s added sucessfully.', name=name), 'success')
                 for element in form: # set up a clean form
                     element.data = ''
                     form.id.data = '0'
