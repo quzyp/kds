@@ -10,6 +10,7 @@ PROJECT_ROOT = pathlib.Path(__file__).resolve().parent
 DIR_PACKAGE = PROJECT_ROOT / 'kds'
 DIR_PACKAGE_REL = 'kds'
 DIR_LANG = DIR_PACKAGE / 'lang'
+DIR_DOCS = PROJECT_ROOT / 'docs'
 FIL_BABEL_CFG = DIR_LANG / 'babel.cfg'
 FIL_BABEL_POT = DIR_LANG / 'messages.pot'
 
@@ -54,6 +55,13 @@ def run_babel(babel_arg):
     subprocess.call(cmd)
     print('Ran babel.')
 
+def run_sphinx():
+    make_bin = DIR_DOCS / 'make'
+    if not make_bin.is_file():
+        make_bin = DIR_DOCS / 'make.bat'
+    cmd = [make_bin, 'html']
+    subprocess.call(cmd)
+
 if __name__ == '__main__':
     operation = sys.argv[1]
     cmd_args = None
@@ -65,7 +73,8 @@ if __name__ == '__main__':
              'coverage': run_coverage,
              'pylint': run_pylint,
              'test': run_test,
-             'babel': run_babel}
+             'babel': run_babel,
+             'sphinx': run_sphinx}
     try:
         if cmd_args:
             modes[operation](cmd_args)
