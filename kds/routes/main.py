@@ -4,9 +4,10 @@ from flask import Blueprint, flash, g, redirect, render_template, request
 from flask_babel import gettext
 from sqlalchemy import exc
 
-from ..extensions import babel, db
-from ..forms import GewerkeForm, UnternehmenForm
-from ..models import Gewerk, Unternehmen
+from flask_login import login_user, logout_user, current_user, login_required
+from ..extensions import babel, db, login_manager
+from ..forms import LoginForm, GewerkeForm, UnternehmenForm
+from ..models import User, Gewerk, Unternehmen
 
 main = Blueprint('main', __name__)
 mapping = {'gewerke': {'model': Gewerk, 'form': GewerkeForm},
@@ -27,7 +28,32 @@ def get_timezone():
     if user is not None:
         return user.timezone
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User.query.filter_by(name=form.name.data).first()
+        if user:
+            if user.check_password(form.password.data):
+                login_user(user)
+                flash('Logged in successfully.', 'success')
+                return redirect('/')
+        flash('Wrong user or password.', 'warning')
+        return redirect('/login')
+    return render_template('login.html', form=form)
+
+@main.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect('/login')
+
 @main.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     """Default table view - show the table and provide form and
     functions for modifying that table.
@@ -35,6 +61,7 @@ def index():
     return redirect('/gewerke')
 
 @main.route('/<tablename>', methods=['GET', 'POST'])
+@login_required
 def tablepage(tablename):
     """ A generalized function for all data categories. """
     action = request.form.get('action', '')

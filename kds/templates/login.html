@@ -1,0 +1,24 @@
+ 
+  {% extends 'base.html' %}
+
+  {% block title %}kds - Login{% endblock %}
+
+  {% block content %}
+
+    <h1>Anmelden</h1>
+
+    <form action="/login" method="POST" role="form">
+      <div class="input-groud-mb3">
+        <div class="form-group col-md-6">
+          {{ form.name.label }}
+          {{ form.name }}
+        </div>
+        <div class="form-group col-md-6">
+          {{ form.password.label }}
+          {{ form.password }}
+        </div>
+          {{ form.submit }}
+      </div>
+    </form>
+
+  {% endblock %}

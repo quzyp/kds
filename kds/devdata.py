@@ -2,7 +2,7 @@
 
 import pathlib
 
-from .models import Gewerk, Unternehmen
+from .models import User, Gewerk, Unternehmen
 from .extensions import db
 
 def filldb(app):
@@ -19,3 +19,7 @@ def filldb(app):
                 values = line.split('|')
                 db.session.add(table(**dict(zip(keys, values))))
             db.session.commit()
+        u = User(name='admin')
+        u.set_password('admin007')
+        db.session.add(u)
+        db.session.commit()

@@ -1,9 +1,13 @@
 """ All forms used in app, build using WTForms. """
 
 from flask_admin.form.fields import Select2Field
-from wtforms import Form, HiddenField, SubmitField
+from wtforms import Form, HiddenField, SubmitField, PasswordField
 from .fields import InputText
 
+class LoginForm(Form):
+    name = InputText('Benutzername')
+    password = PasswordField('Passwort', render_kw={'class': 'form-control'})
+    submit = SubmitField('Login', render_kw={'class': 'btn btn-primary'})
 
 class GewerkeForm(Form):
     """ Form for Gewerke. """
