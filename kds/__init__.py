@@ -24,7 +24,6 @@ def create_app(environment=None):
         configs[environment]()
     except KeyError:
         print(f'### Invalid FLASK_ENV: {environment} ###')
-        return
 
     extensions.register_all(app)
     if environment == 'development':

@@ -2,8 +2,6 @@
 
 """ Register the extensions. """
 
-import pathlib
-
 from flask import redirect
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -16,6 +14,8 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 
 class AuthModelView(ModelView):
+    """ Subclass of the standard flask-admin ModelView in order to
+    provide access control. """
 
     def is_accessible(self):
         return current_user.is_authenticated
