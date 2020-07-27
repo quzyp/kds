@@ -3,7 +3,7 @@
 def pick_from_dict(input_dict, *args):
     """ Take items from a dict to build a new dict. Delete the items
     in the original.
-    
+
     :param input_dict: the dict to operate on.
     :param *args: the keys to pick.
     :return: The new dict and the old dict as a tuple.

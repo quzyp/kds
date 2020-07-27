@@ -5,12 +5,11 @@
 
   {% block content %}
 
-  <p>Unternehmen Übersicht</p>
-
-
-  <form action="/unternehmen" method="POST">
-    <button type="submit" name="action" value="form" class="btn btn-primary">Hinzufügen</button>
-  </form> 
+  <div class="text-center">
+    <form action="/unternehmen" method="POST">
+      <button type="submit" name="action" value="form" class="btn btn-primary">Hinzufügen</button>
+    </form>
+  </div>
 
   <table class="table table-striped table-bordered table-sm" id="datatable">
     <thead>

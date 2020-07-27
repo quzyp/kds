@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-16 12:15+0200\n"
+"POT-Creation-Date: 2020-07-18 13:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: kds/routes/main.py:75
+#: kds/routes/main.py:96
 #, python-format
 msgid "%(name)s added sucessfully."
 msgstr ""
 
-#: kds/routes/main.py:80
+#: kds/routes/main.py:101
 msgid "Invalid format or entry already in table."
 msgstr ""
 
-#: kds/templates/gewerke/add.html:22
+#: kds/templates/base.html:71
+msgid "Settings"
+msgstr ""
+
+#: kds/templates/base.html:72
+msgid "Log out"
+msgstr ""
+
+#: kds/templates/gewerke/add.html:13
 msgid "Error"
 msgstr ""
 

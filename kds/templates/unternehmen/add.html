@@ -6,15 +6,6 @@
   {% block content %}
 
     <h1>Hinzufügen</h1>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }}" role="alert">
-            {{ message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
 
     {% for field, messages in form.errors.items() %}
       {% for message in messages %}

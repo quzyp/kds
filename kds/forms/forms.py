@@ -1,9 +1,15 @@
-""" All forms used in app, build using WTForms. """
+""" All forms used in app, build using WTForms. Custom fields are
+imported from another local module. """
 
 from flask_admin.form.fields import Select2Field
-from wtforms import Form, HiddenField, SubmitField
+from wtforms import Form, HiddenField, SubmitField, PasswordField
 from .fields import InputText
 
+class LoginForm(Form):
+    """ The standard user login form. """
+    name = InputText('Benutzername')
+    password = PasswordField('Passwort', render_kw={'class': 'form-control'})
+    submit = SubmitField('Login', render_kw={'class': 'btn btn-primary'})
 
 class GewerkeForm(Form):
     """ Form for Gewerke. """
@@ -22,6 +28,10 @@ class UnternehmenForm(Form):
     adr_stadt = InputText('Stadt', min=2)
     con_fon = InputText('Telefon')
     con_fax = InputText('Fax')
-    gewerke = Select2Field('Gewerke', coerce=int, render_kw={'data-role': 'select2', 'multiple': True, 'class': 'form-control'})
+    gewerke = Select2Field('Gewerke',
+                           coerce=int,
+                           render_kw={'data-role': 'select2',
+                                      'multiple': True,
+                                      'class': 'form-control'})
     submit = SubmitField('Speichern', render_kw={'class': 'btn btn-primary'})
     readable = 'name'

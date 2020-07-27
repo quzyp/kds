@@ -1,16 +1,49 @@
-""" Module docstring. """
+""" ALl the database models go here. """
+
+import hmac
+import os
+from hashlib import pbkdf2_hmac
+
+from flask_login import UserMixin
 
 from .extensions import db
 
 unt_gew = db.Table('unt_gew',
                    db.Column('unt_id',
                              db.Integer,
-                             db.ForeignKey('unternehmen.id'),
-                             primary_key=True),
+                             db.ForeignKey('unternehmen.id')),
                    db.Column('gew_id',
                              db.Integer,
-                             db.ForeignKey('gewerk.id'),
-                             primary_key=True))
+                             db.ForeignKey('gewerk.id')))
+
+class User(UserMixin, db.Model):
+    """ The User class. set_password and check_password are defined here as
+    this is the only model where those are needed.
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), unique=True)
+    password = db.Column(db.String(64))
+    salt = db.Column(db.String(32))
+
+    def set_password(self, password):
+        """Create hashed password."""
+        salt = os.urandom(16)
+        self.salt = salt.hex()
+        self.password = pbkdf2_hmac('sha256',
+                                    password.encode(),
+                                    salt,
+                                    100_000).hex()
+
+    def check_password(self, password):
+        """Check hashed password."""
+        return hmac.compare_digest(bytes.fromhex(self.password),
+                                   pbkdf2_hmac('sha256',
+                                               password.encode(),
+                                               bytes.fromhex(self.salt),
+                                               100_000))
+
+    def __repr__(self):
+        return '<User {}>'.format(self.name)
 
 class Unternehmen(db.Model):
     """ Table for a company. """
