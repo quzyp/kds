@@ -11,12 +11,10 @@ from .extensions import db
 unt_gew = db.Table('unt_gew',
                    db.Column('unt_id',
                              db.Integer,
-                             db.ForeignKey('unternehmen.id'),
-                             primary_key=True),
+                             db.ForeignKey('unternehmen.id')),
                    db.Column('gew_id',
                              db.Integer,
-                             db.ForeignKey('gewerk.id'),
-                             primary_key=True))
+                             db.ForeignKey('gewerk.id')))
 
 class User(UserMixin, db.Model):
     """ The User class. set_password and check_password are defined here as

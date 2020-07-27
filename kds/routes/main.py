@@ -15,6 +15,7 @@ mapping = {'gewerke': {'model': Gewerk, 'form': GewerkeForm},
  
 @babel.localeselector
 def get_locale():
+    return 'de'
     # if a user is logged in, use the locale from the user settings
     user = getattr(g, 'user', None)
     if user is not None:
@@ -108,7 +109,8 @@ def tablepage(tablename):
 
     if not action:
         # Display the main table view.
-        table_data = mapping[tablename]['model'].query.all()
+        model = mapping[tablename]['model']
+        table_data = model.query.all()
         template = f'{tablename}/index.html'
         return render_template(template, data=table_data)
 

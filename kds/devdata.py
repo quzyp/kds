@@ -17,6 +17,9 @@ def filldb(app):
                 txt = file_.readlines()
             for line in txt:
                 values = line.split('|')
+                for i in range(len(values)):
+                    if values[i].startswith('['):
+                        values[i] = eval(values[i])
                 db.session.add(table(**dict(zip(keys, values))))
             db.session.commit()
         u = User(name='admin')
