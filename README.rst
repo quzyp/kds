@@ -1,11 +1,10 @@
 About
 -----
-This is a program.
+A webapp for managing, logging and comparing contractors and prices.
 
-Installation
-------------
-To be implemented.
-
-Contributing
-------------
-Please don't.
+Currently built with
+* Flask
+* SQLAlchemy
+* WTForms
+* Babel
+* mdbootstrap
